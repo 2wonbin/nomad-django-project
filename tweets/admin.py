@@ -26,7 +26,7 @@ class TweetAdmin(admin.ModelAdmin):
         ),
     )
     readonly_fields = ("created_at", "updated_at")
-    list_display = ("payload", "user")
+    list_display = ("payload", "user", "get_like_count")
 
 
 @admin.register(Like)
