@@ -1,30 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Tweet
+from .serializers import TweetSerializer
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.exceptions import NotFound
 
 
-def see_all_tweets(request):
-    tweets = Tweet.objects.all()
-    return render(
-        request,
-        "all_tweets.html",
-        {"tweets": tweets},
-    )
-
-
-def see_one_tweet(request, tweet_pk):
-    try:
-        tweet = Tweet.objects.get(id=tweet_pk)
-        return render(
-            request,
-            "tweet_detail.html",
-            {"tweet": tweet},
-        )
-    except Tweet.DoesNotExist:
-        return render(
-            request,
-            "tweet_detail.html",
-            {
-                "not_found": True,
-            },
-        )
+@api_view(["GET"])
+def tweets(request):
+    if request.method == "GET":
+        tweets = Tweet.objects.all()
+        serializer = TweetSerializer(tweets, many=True)
+        return Response(serializer.data)
