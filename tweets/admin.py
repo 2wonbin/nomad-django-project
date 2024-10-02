@@ -40,7 +40,7 @@ class TweetAdmin(admin.ModelAdmin):
         ),
     )
     readonly_fields = ("created_at", "updated_at")
-    list_display = ("payload", "user", "get_like_count")
+    list_display = ("id", "payload", "user", "get_like_count")
 
     search_fields = ("payload", "user__username")
     list_filter = (

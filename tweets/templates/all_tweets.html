@@ -1,0 +1,16 @@
+<h2>모든 Tweet</h2>
+
+<ul style="padding:0;">
+    {% for tweet in tweets %}
+    <li style="list-style: none; padding: 0.8rem; outline: auto; outline-color: lightgray; margin-bottom: 0.8rem;">
+        <a href="{% url 'tweets:tweet_detail' tweet.id %}" style="text-decoration: none; color: inherit;">
+            <h3>{{tweet.payload}}</h3>
+            <div style="display: flex; justify-content: flex-end; gap:0.8rem;">
+                <span>작성자: {{tweet.user}}</span>
+                <span>작성일: {{tweet.created_at}}</span>
+                <span>좋아요: {{tweet.get_like_count}}</span>
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
