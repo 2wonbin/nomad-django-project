@@ -1,8 +1,20 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
+
+from .models import User
 
 
-class UserSerializer(serializers.Serializer):
-    pk = serializers.IntegerField()
-    username = serializers.CharField()
-    email = serializers.EmailField()
-    created_at = serializers.DateTimeField()
+class SimpleUserSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+        ]
+
+
+class UserSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
