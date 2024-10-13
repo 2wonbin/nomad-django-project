@@ -8,9 +8,26 @@ class SimpleUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = [
-            "id",
+            "pk",
             "username",
         ]
+
+
+class PrivateUserSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        exclude = (
+            "password",
+            "is_superuser",
+            "is_staff",
+            "is_active",
+            "first_name",
+            "last_name",
+            "id",
+            "groups",
+            "user_permissions",
+        )
 
 
 class UserSerializer(ModelSerializer):

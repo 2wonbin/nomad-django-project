@@ -11,10 +11,6 @@ class User(AbstractUser):
         KR = ("kr", "Korean")
         EN = ("en", "English")
 
-    class CurrencyChoices(models.TextChoices):
-        WON = "won", "Korean Won"
-        USD = "usd", "Dollar"
-
     first_name = models.CharField(
         max_length=150,
         editable=False,
@@ -36,10 +32,6 @@ class User(AbstractUser):
     language = models.CharField(
         max_length=2,
         choices=LanguageChoices.choices,
-    )
-    currency = models.CharField(
-        max_length=5,
-        choices=CurrencyChoices.choices,
     )
 
     def __str__(self):

@@ -18,7 +18,6 @@ class CustomUserAdmin(UserAdmin):
                     "is_host",
                     "gender",
                     "language",
-                    "currency",
                 ),
                 "classes": ("wide",),
             },
